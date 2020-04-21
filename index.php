@@ -1,18 +1,3 @@
-<?php session_start(); ?>
-
-<?php
-if (isset($_POST['btn_play'])) {
-    $_SESSION['low'] = 1;
-    $_SESSION['high'] = 100;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-} elseif (isset($_POST['btn_bigger'])) {
-    $_SESSION['low'] = $_SESSION['result'] + 1;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-} elseif (isset($_POST['btn_smaller'])) {
-    $_SESSION['high'] = $_SESSION['result'] - 1;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-}
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -80,17 +65,10 @@ if (isset($_POST['btn_play'])) {
 </style>
 <body>
 <div class="container">
-    <?php if (isset($_POST['btn_correct'])) {
-        $_SESSION['result'] = null;
-        echo '<span class="text">Game Over!!!</span>';
-//        header("location:index.php");
-    } elseif (isset($_SESSION['result'])) {
-        echo '<span class="text1"> Your number is: ' . $_SESSION['result'] . '</span>';
-    } ?>
-    <form action="#" method="post" style="margin-top: 30px">
-        <button type="submit" name="btn_bigger" class="btn btn-outline-danger">Too low</button>
-        <button type="submit" name="btn_smaller" class="btn btn-outline-danger">Too high</button>
-        <button type="submit" name="btn_correct" class="btn btn-outline-success">Correct</button>
+    <span>Think about a random number from 1 to 100</span>
+    <span>Click Play!</span>
+    <form action="main.php" method="post" style="margin-top: 30px">
+        <button type="submit" name="btn_play" class="btn btn-outline-primary">Play</button>
     </form>
 
 </div>
