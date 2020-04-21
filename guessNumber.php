@@ -27,9 +27,9 @@
         <br>
         <label for="result"><strong>Result</strong></label><input type="number" id="result">
         <br>
-        <button onclick="binarySearch()">Play</button>
-        <button onclick="biggerSearch()" id="bigger">Bigger</button>
-        <button onclick="smallerSearch()" id="smaller">Smaller</button>
+        <button onclick="first_guess()">Play</button>
+        <button onclick="bigger_guess()" id="bigger">Bigger</button>
+        <button onclick="smaller_guess()" id="smaller">Smaller</button>
         <button onclick="alert('Game Over')" type="reset">Correct</button>
     </div>
 </form>
@@ -39,24 +39,19 @@
     let high = document.getElementById('high');
     let result = document.getElementById('result');
 
-    function binarySearch() {
+    function first_guess() {
         result.value = Math.floor((1 + 100) / 2);
     }
 
-    function biggerSearch() {
-        if (document.getElementById('bigger').onclick) {
-            low.value = parseFloat(document.getElementById('result').value) + 1;
-            console.log(low.value);
-            result.value = Math.floor((parseFloat(low.value) + parseFloat(high.value)) / 2);
-        }
+    function bigger_guess() {
+        low.value = parseFloat(document.getElementById('result').value) + 1;
+        result.value = Math.floor((parseFloat(low.value) + parseFloat(high.value)) / 2);
     }
 
-    function smallerSearch() {
-        if (document.getElementById('smaller').onclick) {
-            high.value = parseFloat(document.getElementById('result').value) - 1;
-            console.log(low.value);
-            result.value = Math.floor((parseFloat(low.value) + parseFloat(high.value)) / 2);
-        }
+    function smaller_guess() {
+        high.value = parseFloat(document.getElementById('result').value) - 1;
+        console.log(low.value);
+        result.value = Math.floor((parseFloat(low.value) + parseFloat(high.value)) / 2);
     }
 
 </script>
