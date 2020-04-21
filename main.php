@@ -1,19 +1,23 @@
-<?php session_start(); ?>
-
+<?php session_start();
+$path = session_save_path() . '/sess_' . session_id();
+chmod($path, 0640);
+?>
 <?php
-if (isset($_POST['btn_play'])) {
-    $_SESSION['low'] = 1;
-    $_SESSION['high'] = 100;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-} elseif (isset($_POST['btn_bigger'])) {
-    $_SESSION['low'] = $_SESSION['result'] + 1;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-} elseif (isset($_POST['btn_smaller'])) {
-    $_SESSION['high'] = $_SESSION['result'] - 1;
-    $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
-}
-if (isset($_POST['btn_replay'])) {
-    header("location:index.php");
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['btn_play'])) {
+        $_SESSION['low'] = 1;
+        $_SESSION['high'] = 100;
+        $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
+    } elseif (isset($_POST['btn_bigger'])) {
+        $_SESSION['low'] = $_SESSION['result'] + 1;
+        $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
+    } elseif (isset($_POST['btn_smaller'])) {
+        $_SESSION['high'] = $_SESSION['result'] - 1;
+        $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
+    }
+    if (isset($_POST['btn_replay'])) {
+        header("location:index.php");
+    }
 }
 ?>
 <!doctype html>
@@ -23,7 +27,7 @@ if (isset($_POST['btn_replay'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>[Bài tập] Game đoán số</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
@@ -84,9 +88,8 @@ if (isset($_POST['btn_replay'])) {
 <body>
 <div class="container">
     <?php if (isset($_POST['btn_correct'])) {
-        $_SESSION['result'] = null;
+        session_destroy();
         echo '<span class="text">Game Over!!!</span>';
-//        header("location:index.php");
     } elseif (isset($_SESSION['result'])) {
         echo '<span class="text1"> Your number is: ' . $_SESSION['result'] . '</span>';
     } ?>
