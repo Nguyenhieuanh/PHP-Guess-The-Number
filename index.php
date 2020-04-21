@@ -30,52 +30,14 @@
         display: block;
     }
 
-    .text {
-        font-size: 60px;
-        font-weight: 700;
-        letter-spacing: 8px;
-        margin-bottom: 20px;
-        position: relative;
-        animation: text 3s 1;
-    }
-
-    .text1 {
-        font-size: 60px;
-        font-weight: 700;
-        letter-spacing: 8px;
-        margin-bottom: 20px;
-        position: relative;
-    }
-
-    @keyframes text {
-        0% {
-            color: black;
-            margin-bottom: -40px;
-        }
-        30% {
-            letter-spacing: 25px;
-            margin-bottom: -40px;
-        }
-        85% {
-            letter-spacing: 8px;
-            margin-bottom: -40px;
-        }
-
-    }
 </style>
 <body>
 <div class="container">
     <span>Think about a random number from 1 to 100</span>
-    <span>Click Play!</span>
+    <span>Click Guess!</span>
     <form action="main.php" method="post" style="margin-top: 30px">
-        <button type="submit" name="btn_play" class="btn btn-outline-primary">Play</button>
+        <button type="submit" name="btn_play" class="btn btn-outline-primary" style="width: 100px;">Guess</button>
     </form>
-
 </div>
-<script>
-    function display() {
-        document.getElementById('panel').style.display = "none";
-    }
-</script>
 </body>
 </html>

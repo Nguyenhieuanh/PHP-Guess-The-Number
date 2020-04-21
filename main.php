@@ -12,6 +12,9 @@ if (isset($_POST['btn_play'])) {
     $_SESSION['high'] = $_SESSION['result'] - 1;
     $_SESSION['result'] = floor(($_SESSION['low'] + $_SESSION['high']) / 2);
 }
+if (isset($_POST['btn_replay'])) {
+    header("location:index.php");
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -91,6 +94,7 @@ if (isset($_POST['btn_play'])) {
         <button type="submit" name="btn_bigger" class="btn btn-outline-danger">Too low</button>
         <button type="submit" name="btn_smaller" class="btn btn-outline-danger">Too high</button>
         <button type="submit" name="btn_correct" class="btn btn-outline-success">Correct</button>
+        <button type="submit" name="btn_replay" class="btn btn-outline-primary">Replay</button>
     </form>
 
 </div>
